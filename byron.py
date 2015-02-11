@@ -8,6 +8,19 @@ import random
 import json
 import requests
 
+print "Connecting to Tumblr..."
+
+# Authenticate via OAuth
+client = pytumblr.TumblrRestClient(
+  'veXTmnXDd7jmPZ5fdILVATJU200LWAr9UjbPbeJwzwxoO1Gcub',
+  'rs6hs2y1HCszVb88nszvKUes9tAFnJwJ3IJUJrvQ9RjDCBjrTI',
+  'bMARTVAHGQlToaFJuLMf9MEFbYwWc6w7sNsMf5L50jWM4cZBGS',
+  'TjYVpKbn6S8ZQHt54WDtQ14qAM4UINbuxA07T8OkCQg3ofEyQk'
+)
+
+# Make the request
+client.info()
+
 #load shitposts into RAM
 file = open("lines.txt", "r")
 shitposts = {}
@@ -70,15 +83,14 @@ for i in range(0,numOfPoems):
 		
 		#search for rhymes
 		for entry in j:
-			
-			if entry["word"] in keys:
+			if entry["word"] in keysCopy:
 				if entry["word"] != lastWord:
 					if x % 2 == 0:
 						a = entry["word"]
-						poem += random.choice(shitposts.pop(a, None)) + "\n"
+						poem += random.choice(shitposts.pop(a, [""])) + "\n"
 					else:
 						b = entry["word"]
-						poem += random.choice(shitposts.pop(b, None)) + "\n"
+						poem += random.choice(shitposts.pop(b, [""])) + "\n"
 			else:
 				poem += ""
 	
@@ -96,4 +108,9 @@ for i in range(0,numOfPoems):
 	print poem
 	print "-----"
 	
-	#client.create_text("shitpostpoetry", state="queue", tags=["shitpost"], title=poemTitle, body=poem)
+	#LET'S PUT THIS POEM ON TUMBLR
+	
+	if body == "" or title == "":
+		pass
+	else:
+		client.create_text("shitpostpoetry", state="queue", tags=[""], title=poemTitle, body=poem)
