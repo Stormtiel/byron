@@ -5,7 +5,7 @@
 import pytumblr
 
 # Authenticate via OAuth
-client = pytumblr.TumblrRestClient( #naw you ain't getting this
+client = pytumblr.TumblrRestClient(#nope
 )
 
 # Make the request
