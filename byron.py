@@ -35,25 +35,26 @@ keys = shitposts.keys()
 #and now we build our poems!
 for i in range(0,numOfPoems):
 
+	#so we can delete keys we've used
+	keysCopy = keys
+	
 	poemTitle =  ""
 	poem = ""
 	
 	#right now I'm just doing ABAB rhyme scheme
 	#keep track of the last word in the scheme
-	a = random.choice(keys)
-	b = random.choice(keys)
+	a = random.choice(keysCopy)
+	b = random.choice(keysCopy)
 	while a == b:
-		b = shitposts.keys()
+		b = shitposts.keysCopy()
 		
 	#the first two lines in the poem are random
 	#handling for if two lines end in the same word
-	poem += random.choice(shitposts[a]) + "\n"
-	poem += random.choice(shitposts[b]) + "\n"
+	poem += random.choice(shitposts.pop(a, None)) + "\n"
+	poem += random.choice(shitposts.pop(b, None)) + "\n"
 	
 	#give us a random number of lines between 5 and 10
 	for x in range(2, random.randint(4,6)):
-	
-		print x
 		
 		#get me the last word of the previous line
 		if x % 2 == 0:
@@ -69,17 +70,15 @@ for i in range(0,numOfPoems):
 		
 		#search for rhymes
 		for entry in j:
-			print lastWord
-			print entry["word"]
 			
 			if entry["word"] in keys:
 				if entry["word"] != lastWord:
 					if x % 2 == 0:
 						a = entry["word"]
-						poem += random.choice(shitposts[b]) + "\n"
+						poem += random.choice(shitposts.pop(a, None)) + "\n"
 					else:
 						b = entry["word"]
-						poem += random.choice(shitposts[a]) + "\n"
+						poem += random.choice(shitposts.pop(b, None)) + "\n"
 			else:
 				poem += ""
 	
