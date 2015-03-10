@@ -30,8 +30,10 @@ def main():
 	print "Connecting to Tumblr..."
 
 	# Authenticate via OAuth
-	client = pytumblr.TumblrRestClient(
-	#auth information here
+	client = pytumblr.TumblrRestClient('veXTmnXDd7jmPZ5fdILVATJU200LWAr9UjbPbeJwzwxoO1Gcub',
+	  'rs6hs2y1HCszVb88nszvKUes9tAFnJwJ3IJUJrvQ9RjDCBjrTI',
+	  'bMARTVAHGQlToaFJuLMf9MEFbYwWc6w7sNsMf5L50jWM4cZBGS',
+	  'TjYVpKbn6S8ZQHt54WDtQ14qAM4UINbuxA07T8OkCQg3ofEyQk'
 	)
 
 	# Make the request
