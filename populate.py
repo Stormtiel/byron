@@ -4,6 +4,8 @@
 
 import pytumblr
 
+print("Connecting to tumblr...")
+
 # Authenticate via OAuth
 client = pytumblr.TumblrRestClient( #auth info
 )
@@ -11,8 +13,11 @@ client = pytumblr.TumblrRestClient( #auth info
 # Make the request
 client.info()
 
+print("Connected.")
+
 #Get posts
-posts = client.tagged('post')
+chosenTag = str(raw_input("What tag am I searching? "))
+posts = client.tagged(chosenTag)
 file = open("lines.txt", "a")
 
 #Process posts
