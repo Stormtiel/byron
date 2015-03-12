@@ -13,8 +13,7 @@ def getRhymes(word):
 
 	#open the webpage and process it
 	url = urllib2.urlopen("http://rhymezone.com/r/rhyme.cgi?Word=" + word + "&typeofrhyme=perfect&org1=syl&org2=l&org3=y")
-	r = bs4.BeautifulSoup(url)
-	page = ((''.join(r.findAll(text=True))).strip())
+	page = bs4.BeautifulSoup(url).get_text()
 
 	#if we didn't have any perfect rhymes, end the poem
 	if 'Words and phrases that rhyme with' not in page:
